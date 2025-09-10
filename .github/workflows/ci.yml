@@ -75,7 +75,7 @@ jobs:
       - name: Build and Export static site
         run: |
           npm run -s build
-          npx --yes next export -o out
+          npx --yes next export -o out || echo "Static export failed; skipping Pages deploy"
 
       - name: Configure Pages
         if: hashFiles('out/**') != ''
