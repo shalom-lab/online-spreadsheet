@@ -1,21 +1,15 @@
 
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  images: {
-    unoptimized: true,
-  },
-  experimental: {
-    webpackBuildWorker: true,
-    parallelServerBuildTraces: true,
-    parallelServerCompiles: true,
-  },
-}
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+const repositoryName = 'online-spreadsheet'; // change if repo name differs
 
-export default nextConfig
+const basePath = isGithubActions ? `/${repositoryName}` : '';
+
+export default {
+	output: 'export',
+	basePath,
+	assetPrefix: basePath ? `${basePath}/` : '',
+	images: { unoptimized: true },
+	trailingSlash: true,
+};
