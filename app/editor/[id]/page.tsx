@@ -1,11 +1,11 @@
 import { EditorView } from "@/components/editor-view"
 
-export default function EditorPage({ params }: { params: { id: string } }) {
-    // 直接传递params对象，而不是params.id
-    return (
-        <div className="min-h-screen bg-gray-50 flex flex-col">
-            <EditorView params={params} />
-        </div>
-    )
+export default async function EditorPage({ params }: { params: Promise<{ id: string }> }) {
+	const { id } = await params
+	return (
+		<div className="min-h-screen bg-gray-50 flex flex-col">
+			<EditorView params={{ id }} />
+		</div>
+	)
 }
 
