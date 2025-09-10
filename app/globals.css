@@ -1,0 +1,355 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 142.1 76.2% 36.3%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 142.1 76.2% 36.3%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* 自定义Luckysheet样式，确保与我们的界面正确集成 */
+/* 全屏模式下不需要顶部内边距 */
+/* 修改这个样式，确保在全屏模式下电子表格正确显示 */
+#luckysheet {
+  padding-top: 0 !important;
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  left: 0 !important;
+  top: 0 !important;
+}
+
+/* 确保Luckysheet的工具栏不会与我们的工具栏重叠 */
+.luckysheet-toolbar-button,
+.luckysheet-toolbar-select,
+.luckysheet-toolbar-menu-button {
+  z-index: 15 !important;
+}
+
+/* 确保弹出菜单显示在最上层 */
+.luckysheet-toolbar-menu-button .luckysheet-toolbar-menu-button-dropdown {
+  z-index: 25 !important;
+}
+
+/* 确保Luckysheet的弹出对话框显示在最上层 */
+.luckysheet-dialog-mask,
+.luckysheet-modal-dialog {
+  z-index: 30 !important;
+}
+
+/* 确保Luckysheet的工具栏显示完整 */
+.luckysheet-toolbar-container {
+  width: 100% !important;
+  padding: 0 10px !important;
+}
+
+/* 优化Luckysheet在暗黑模式下的显示 */
+.dark .luckysheet-grid-window,
+.dark .luckysheet-cols-h,
+.dark .luckysheet-rows-h {
+  background-color: #1a1a1a !important;
+  color: #e0e0e0 !important;
+}
+
+.dark .luckysheet-grid-window .luckysheet-cell-main {
+  color: #e0e0e0 !important;
+}
+
+.dark .luckysheet-toolbar-button,
+.dark .luckysheet-toolbar-select,
+.dark .luckysheet-toolbar-menu-button {
+  color: #e0e0e0 !important;
+}
+
+.dark .luckysheet-toolbar-menu-button:hover,
+.dark .luckysheet-toolbar-button:hover,
+.dark .luckysheet-toolbar-select:hover {
+  background-color: #333 !important;
+}
+
+/* 确保Luckysheet的底部状态栏显示完整 */
+.luckysheet-stat-area {
+  height: auto !important;
+  padding: 5px 10px !important;
+  background-color: #f5f5f5 !important;
+  border: none !important;
+}
+
+/* 隐藏底部紫色框 */
+.luckysheet-sheet-area .luckysheet-sheets-item {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #e0e0e0 !important;
+}
+
+.luckysheet-sheet-area .luckysheet-sheets-item-active {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #fff !important;
+}
+
+/* 隐藏所有可能的紫色边框 */
+.luckysheet-sheet-container,
+.luckysheet-sheet-container-c,
+.luckysheet-sheet-container-c-active,
+.luckysheet-sheet-container-c-hover,
+.luckysheet-sheets-item,
+.luckysheet-sheets-item-active,
+.luckysheet-sheets-item-hover {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 修复底部工作表区域的样式 */
+.luckysheet-sheet-area {
+  background-color: #f5f5f5 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.luckysheet-sheet-content {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 隐藏底部紫色/蓝色边框 */
+.luckysheet-sheet-area .luckysheet-sheets-item {
+  border-bottom: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+.luckysheet-sheet-area .luckysheet-sheets-item-active {
+  border-bottom: none !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* 修复表格底部所有可能的紫色/蓝色边框 */
+.luckysheet-sheet-container-c {
+  background-color: #f5f5f5 !important;
+  border-top: 1px solid #e0e0e0 !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+/* 修复工作表标签的样式 */
+.luckysheet-sheets-item {
+  margin: 0 5px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  border-radius: 4px 4px 0 0 !important;
+  padding: 0 10px !important;
+  background-color: #e0e0e0 !important;
+  color: #333 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.luckysheet-sheets-item-active {
+  background-color: #fff !important;
+  color: #4b89ff !important;
+  font-weight: bold !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 修复工作表底部区域的所有边框 */
+.luckysheet-sheet-area,
+.luckysheet-sheet-content,
+.luckysheet-sheet-container,
+.luckysheet-sheet-container-c,
+.luckysheet-sheets-item,
+.luckysheet-sheets-item-active {
+  border-top: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+}
+
+/* 确保表格底部区域没有任何边框或阴影 */
+.luckysheet-sheet-area {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: #f5f5f5 !important;
+}
+
+/* 修复表格底部状态栏 */
+#luckysheet-sta-content {
+  background-color: #f5f5f5 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 优化工具栏样式 */
+.luckysheet-toolbar-container {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* 优化公式栏样式 */
+.luckysheet-formula-search-c {
+  z-index: 20 !important;
+}
+
+/* 优化右键菜单样式 */
+.luckysheet-cols-menu,
+.luckysheet-rows-menu {
+  z-index: 25 !important;
+}
+
+/* 移除所有红色边框 */
+.luckysheet-row-count-show,
+.luckysheet-column-count-show {
+  border: none !important;
+}
+
+.luckysheet-change-size-line {
+  border: none !important;
+  background-color: #4b89ff !important;
+}
+
+.luckysheet-row-count-show,
+.luckysheet-column-count-show {
+  background-color: #f5f5f5 !important;
+}
+
+.dark .luckysheet-row-count-show,
+.dark .luckysheet-column-count-show {
+  background-color: #333 !important;
+}
+
+/* 修复表格底部红框 */
+.luckysheet-sheet-area .luckysheet-sheets-item {
+  box-shadow: none !important;
+}
+
+.luckysheet-sheet-area .luckysheet-sheets-item-active {
+  box-shadow: none !important;
+}
+
+/* 修复表格底部红框 - 工作表切换区域 */
+.luckysheet-sheet-container-c {
+  background-color: #f5f5f5 !important;
+}
+
+.dark .luckysheet-sheet-container-c {
+  background-color: #333 !important;
+}
+
+.luckysheet-sheet-container {
+  background-color: transparent !important;
+}
+
+/* 修复表格底部红框 - 工作表标签 */
+.luckysheet-sheets-item {
+  background-color: #e0e0e0 !important;
+  color: #333 !important;
+}
+
+.dark .luckysheet-sheets-item {
+  background-color: #444 !important;
+  color: #e0e0e0 !important;
+}
+
+.luckysheet-sheets-item-active {
+  background-color: #fff !important;
+  color: #4b89ff !important;
+  font-weight: bold !important;
+}
+
+.dark .luckysheet-sheets-item-active {
+  background-color: #555 !important;
+  color: #4b89ff !important;
+}
+
+/* 全屏模式下的样式调整 */
+body.fullscreen-spreadsheet {
+  overflow: hidden;
+}
+
+/* 确保全屏模式下电子表格占据整个屏幕 */
+.fullscreen-mode #luckysheet {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+}
+
